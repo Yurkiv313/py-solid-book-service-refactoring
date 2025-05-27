@@ -1,5 +1,5 @@
 from app.book import Book
-from app.display_strategies import DisplayConsole, DisplayReverse
+from app.display_strategies import Display, DisplayConsole, DisplayReverse
 from app.print_strategies import ConsolePrinter, ReversePrinter
 from app.serialize_strategies import JsonSerializer, XmlSerializer
 
@@ -7,9 +7,9 @@ from app.serialize_strategies import JsonSerializer, XmlSerializer
 def run_command(book: Book, command: str, method_type: str) -> str | None:
     if command == "display":
         if method_type == "console":
-            DisplayConsole().display(book.content)
+            Display(DisplayConsole()).display(book.content)
         elif method_type == "reverse":
-            DisplayReverse().display(book.content)
+            Display(DisplayReverse()).display(book.content)
         else:
             raise ValueError(f"Unknown display type: {method_type}")
 
